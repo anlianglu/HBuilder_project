@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #0062CC;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav ">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left  "></a>
+			<h1 class="mui-title">标题</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+
+					</div>
+				</div>
+
+				<div class="mui-slider-group">
+
+				</div>
+
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/loadXml.js"></script>
+		<script type="text/javascript">
+			mui.init()
+
+			var deceleration = mui.os.ios ? 0.003 : 0.0009;
+			mui('.mui-scroll-wrapper').scroll({
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration: deceleration
+			});
+
+			var xmlDoc = checkXMLDocObj('../shu.xml');
+			var nodes = xmlDoc.getElementsByTagName('section');
+			var mui_scroll = document.querySelector('.mui-scroll');
+			var mui_slider_group = document.querySelector('.mui-slider-group');
+			mui.ready(function() {
+				console.log("=================ready=================");
+				console.log(xmlDoc);
+				console.log(nodes);
+				console.log("nodes.length=" + nodes.length);
+
+				var partTitle = nodes[0].getElementsByTagName("part");
+
+				console.log("partTitle.length = " + partTitle.length);
+				console.log(partTitle);
+
+				var unitTitlestr = nodes[0].getElementsByTagName("part")[0].getElementsByTagName("unit");
+				console.log("unitTitlestr.length=" + unitTitlestr.length);
+
+				var loadingread = 0;
+
+				for(var i = 0; i < unitTitlestr.length; i++) {
+
+					var nuit = unitTitlestr[i].getAttribute("title")
+					var a = document.createElement('a');
+					if(i == loadingread) {
+						console.log("i=" + i);
+						a.className = 'mui-control-item mui-active';
+					} else {
+						console.log("i=" + i);
+						a.className = 'mui-control-item';
+					}
+					var idstr = "#item" + i;
+					a.href = idstr
+					a.innerHTML = nuit;
+					mui_scroll.appendChild(a);
+
+					var point = unitTitlestr[i].getElementsByTagName("point");
+					//console.log(point);
+					//console.log(point[0].innerHTML);
+
+					var span = document.createElement("span");
+					span.innerHTML = ""+point[0].innerHTML;
+//					span.innerHTML = "<p />采分点2：蛋白质水解生成的天然氨基酸有20余种，但其化学结构式具有一个共同的特点，即在连接羧基的α-碳原子上还有一个氨基。"+
+//					"<p />采分点3： 除甘氨酸外， 其余氨基酸的α - 碳原子是一个不对称碳原子， 具有旋光异构现象。"+
+//				    "<p />采分点4： 氨基酸有D型和L型两种构型" +
+//					"<p />采分点5： 组成天然蛋白质的20种氨基酸多属于L - α - 氨基酸。"+
+//					"<p />采分点6： 生物界中已发现的D型氨基酸大都存在于某些细菌产生的抗生素及个别植物的生物碱中。"+
+//					"<p />采分点7： 组成蛋白质的氨基酸有20余种， 但由遗传密码编码直接合成肽气连的只有20种氨基酸。"+
+//				    "<p />采分点8： 非极性R基氨基酸的特征是在水中溶解度小于极性R基氨基酸。"
+					var divscroll = document.createElement("div");
+					divscroll.className = 'mui-scroll';
+					divscroll.appendChild(span);
+
+					var divscrollwrapper = document.createElement("div");
+					divscrollwrapper.className = 'mui-scroll-wrapper';
+					divscrollwrapper.appendChild(divscroll);
+
+					var divitem = document.createElement("div");
+					var dividstr = "item" + i;
+					divitem.id = dividstr
+					if(i == loadingread) {
+						divitem.className = 'mui-slider-item mui-control-content mui-active'
+					} else {
+						divitem.className = 'mui-slider-item mui-control-content'
+					}
+
+					divitem.appendChild(divscrollwrapper)
+
+					mui_slider_group.appendChild(divitem);
+
+				}
+				console.log(mui_scroll.innerHTML);
+				console.log("---------------------------------------");
+				console.log(mui_slider_group.innerHTML);
+
+			});
+
+			mui.plusReady(function() {
+				//				mui('.mui-slider-item').on('scroll', )
+				//				mui('.mui-slider-group').on('scroll', )
+
+				mui('mui-slider-group').on('tap', '.mui-slider-item', function() {
+					console.log(" ready  list touch is ok!");
+					var idtitle = this.getAttribute("id");
+					console.log(idtitle);
+
+				});
+
+			})
+		</script>
+	</body>s
+
+</html>

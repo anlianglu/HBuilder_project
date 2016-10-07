@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="js/mui.min.js"></script>
-    <link href="css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-</head>
-<body>
-	
-</body>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			
+			mui.plusReady(function(){
+				var isfirst = localStorage.getItem("isfirst");
+			console.log("isfirst")
+			console.log(isfirst)
+			var urlstr = null;
+			var urlid = null;
+			
+			if(isfirst == 1) {
+				
+				urlstr = 'main/main.html';
+				urlid = 'main';
+			} else {
+				urlstr = 'logon/login.html';
+				urlid = 'login';
+			}
+			mui.openWindow({
+					url: urlstr,
+					id: urlid,
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			
+			
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">登录</h1>
+		</header>
+	</body>
+
 </html>

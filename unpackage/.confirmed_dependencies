@@ -1,0 +1,137 @@
+{
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "logon/login.html",
+      "main/main.html",
+      "logon/main.html",
+      "main/login.html"
+    ]
+  },
+  "main/main.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/loadXml.js",
+      "aaaaa.xml",
+      "set/setting.html",
+      "main/setting.html",
+      "shu.xml"
+    ],
+    "refer": [
+      "main/second.html"
+    ]
+  },
+  "set/setting.html": {
+    "resources": [
+      "set/about.html",
+      "main/main.html"
+    ],
+    "refer": [
+      "set/about.html",
+      "main/main.html"
+    ]
+  },
+  "set/about.html": {
+    "resources": [
+      "set/setting.html"
+    ],
+    "refer": [
+      "set/setting.html"
+    ]
+  },
+  "logon/login.html": {
+    "resources": [
+      "js/app.js",
+      "css/style.css",
+      "js/mui.min.js",
+      "images/sinaweibo.png",
+      "css/mui.min.css",
+      "images/weixin.png",
+      "images/qq.png"
+    ],
+    "refer": [
+      "logon/forget_password.html",
+      "logon/reg.html",
+      "logon/main.html"
+    ]
+  },
+  "logon/forget_password.html": {
+    "resources": [
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "logon/reg.html": {
+    "resources": [
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "logon/main.html": {
+    "resources": [
+      "aaaaa.xml",
+      "fonts/mui.ttf",
+      "js/loadXml.js"
+    ],
+    "refer": []
+  },
+  "main/login.html": {
+    "resources": [
+      "js/app.js",
+      "images/sinaweibo.png",
+      "css/style.css",
+      "images/weixin.png",
+      "images/qq.png",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "main/reg.html",
+      "main/main.html"
+    ]
+  },
+  "main/setting.html": {
+    "resources": [
+      "main/about.html",
+      "main/main.html"
+    ],
+    "refer": [
+      "main/about.html"
+    ]
+  },
+  "main/about.html": {
+    "resources": [
+      "main/setting.html"
+    ],
+    "refer": [
+      "main/setting.html"
+    ]
+  },
+  "main/second.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/loadXml.js",
+      "shu.xml"
+    ],
+    "refer": [
+      "main/third.html"
+    ]
+  },
+  "main/third.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/loadXml.js",
+      "shu.xml"
+    ]
+  }
+}

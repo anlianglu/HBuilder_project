@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">第二级目录</h1>
+		</header>
+
+		<div class="mui-content">
+			<ul class="mui-table-view">
+
+			</ul>
+
+			<div class="mui-content-padded">
+				<span id="message"></span>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/loadXml.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			//
+
+			var id = null;
+			var xmlDoc = checkXMLDocObj('../shu.xml');
+			var nodes = xmlDoc.getElementsByTagName('section');
+			var ul = document.querySelector('.mui-table-view');
+			var readxml = function(id) {
+				//console.log("----------------------------");
+				//console.log("id-index=" + id);
+				var id_index = id.substring(5, id.length);
+				//console.log("detail id=" + id.substring(3, id.length));
+				console.log("id_index=" + id_index);
+				console.log("nodes.length = " + nodes.length);
+
+				var partTitle = nodes[id_index].getElementsByTagName("part");
+
+				console.log("partTitle.length = " + partTitle.length);
+				console.log(partTitle);
+				if(partTitle.length != 0) {
+					//console.log("partTitle  =" + partTitle.length);
+					for(var j = 0; j < partTitle.length; j++) {
+						var partTitlestring = partTitle[j].getAttribute('title');
+						console.log("partTitle name  =" + partTitlestring);
+
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						var a = document.createElement('a');
+						a.className = 'mui-navigate-right';
+						a.innerHTML = partTitlestring;
+
+						var index = "" + (j);
+						//console.log("index = "+index);	
+						li.id = "index" + index;
+						li.appendChild(a);
+						ul.appendChild(li);
+					}
+					//console.log("++++++++++++++++++++++++++++++++++++++");
+					//console.log(ul.innerHTML);
+				} 
+			}
+
+			//删除递归函数
+			var removefun = function(n) {
+				ul.removeChild(ul.childNodes[1]);
+				var n1 = ul.childNodes.length;
+				console.log("n1 =" + n1);
+				if(n1 != 1 && n1 > 0) {
+					removefun(n1);
+				} else {
+					return;
+				}
+			}
+
+			//删除ul下的所以子节点
+			var removeUlChild = function(id) {
+				document.getElementById("message").innerHTML = "";
+				//console.log("xxxxx---------------------xxxxxxxxx");
+				console.log("ul.length  removeUlChild = " + ul.childNodes.length);
+				var n = ul.childNodes.length;
+				if(n != 1 && n > 0) {
+					console.log("n等于非1");
+					removefun(n);
+				}
+				readxml(id);
+			}
+
+			//添加newId自定义事件监听
+			window.addEventListener('titleId', function(event) {
+				//获得事件参数
+				id = event.detail.id;
+				console.log(" ----------------------------------");
+				console.log(" id = " + id);
+
+				//根据id请求目录详情
+				//	console.log("detail id=" + id.substring(3, id.length));
+				removeUlChild(id);
+			});
+			
+			
+			mui.plusReady(function(){
+				
+				var detail = null;
+				mui(ul).on('tap', '.mui-table-view-cell', function() {
+					console.log(" ready  list touch is ok!");
+					var idtitle = this.getAttribute("id");
+					console.log(idtitle);
+					if(!detail) {
+						detail = plus.webview.getWebviewById('third.html');
+					}
+					//传值给详情页面，通知加载新数据
+					mui.fire(detail, 'titleId', {
+						id: idtitle
+					});
+					//打开新闻详情
+					mui.openWindow({
+						id: 'third.html',
+						url: 'third.html',
+						createNew:false
+					});
+					
+				});
+			});
+		</script>
+	</body>
+
+</html>
