@@ -117,7 +117,7 @@
 					var idtitle = this.getAttribute("id");
 					console.log(idtitle);
 					if(!detail) {
-						detail = plus.webview.getWebviewById('third.html');
+						detail = plus.webview.getWebviewById('../test.html');
 					}
 					//传值给详情页面，通知加载新数据
 					mui.fire(detail, 'titleId', {
@@ -125,8 +125,8 @@
 					});
 					//打开新闻详情
 					mui.openWindow({
-						id: 'third.html',
-						url: 'third.html',
+						id: '../test.html',
+						url: '../test.html',
 						createNew:false
 					});
 					

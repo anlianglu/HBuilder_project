@@ -50,15 +50,17 @@
 				console.log(unitTitle);
 				
 				var unitTitlestr = nodes[0].getElementsByTagName("part")[0].getElementsByTagName("unit");
-				console.log("unitTitlestr.length=" + unitTitlestr.length);
+			
+			    console.log("unitTitlestr.length=" + unitTitlestr.length);
+			    console.log(unitTitlestr);
 				
 				for(var i = 0; i < unitTitlestr.length; i++) {
 					
 					var nuit = unitTitlestr[i].getAttribute("title")
 					console.log("nuit = "+nuit);
 					var point = unitTitlestr[i].getElementsByTagName("point");
-					//console.log(point);
-					//console.log(point[0].innerHTML);
+					console.log(point);
+					console.log(point[0].textContent);
 				}
 				
 				

@@ -378,7 +378,8 @@
 					"shu.xml"
 				],
 				"refer": [
-					"main/third.html"
+					"main/third.html",
+					"test.html"
 				],
 				"priority": 0
 			},
@@ -389,6 +390,17 @@
 					"css/mui.min.css",
 					"js/loadXml.js",
 					"shu.xml"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"test.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/loadXml.js",
+					"shu.xml",
+					"fonts/mui.ttf"
 				],
 				"refer": [],
 				"priority": 0
