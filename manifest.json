@@ -322,7 +322,8 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"main/setting.html",
-					"shu.xml"
+					"shu.xml",
+					"images/aa15.png"
 				],
 				"refer": [
 					"main/second.html"
@@ -346,7 +347,8 @@
 					"images/weixin.png",
 					"images/qq.png",
 					"js/mui.min.js",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					null
 				],
 				"refer": [
 					"main/reg.html",

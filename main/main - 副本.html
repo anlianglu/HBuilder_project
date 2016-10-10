@@ -7,27 +7,13 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<style type="text/css">
-			.body-font {
+			.body-font{
 				font-size: 35p;
 				color: #007AFF;
 			}
-			
-			.mui-ellipsis {
+			.mui-ellipsis{
 				font-size: 12px;
 				color: #ACACB4;
-			}
-			
-			.mui-content-padded-111 {
-				margin-top: 170px;
-			}
-			
-			.tiba {
-				margin-left: 370px;
-			}
-			
-			.srcimg {
-				margin-bottom: 10px;
-				width: 100%;
 			}
 		</style>
 	</head>
@@ -37,30 +23,65 @@
 
 			<a id="info" class="mui-icon  mui-icon-gear  mui-pull-right" href="setting.html"></a>
 			<a id="tishi" class="mui-icon mui-icon-info-filled mui-pull-left" style="color: #F14E41;"></a>
-
+			
 		</header>
 		<div class="mui-content">
-
+			
 			<div class="mui-content-padded">
-				<button type="button" class="mui-btn mui-btn-primary mui-btn-block ">  第一部分 基础医学综合</button>
-				<button type="button" class="mui-btn mui-btn-primary mui-btn-block ">第二部分 医学人文综合</button>
-				<button type="button" class="mui-btn mui-btn-primary mui-btn-block ">第三部分 预防医学综合</button>
-				<button type="button" class="mui-btn mui-btn-primary mui-btn-block "> 第四部分 临床医学综合</button>
-
+				 <button type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined">  第一部分 基础医学综合</button>
+				  <button type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined">第二部分 医学人文综合</button>
+				   <button type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined">第三部分 预防医学综合</button>
+				    <button type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined"> 第四部分 临床医学综合</button>
 			</div>
-
-			<ul class="mui-table-view ">
-
+			
+		<ul class="mui-table-view body-font">
+		    <li class="mui-table-view-cell mui-media">
+		        <a href="javascript:;">
+		            <img class="mui-media-object mui-pull-left" src="../images/qihoo.png">
+		            <div class="mui-media-body ">
+		                                第一部分 基础医学综合
+		                <p class="mui-ellipsis ">  主要包括生物化学、生理学医学微生物学医学免疫学、病理学</p>
+		            </div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media">
+		        <a href="javascript:;">
+		            <img class="mui-media-object mui-pull-left" src="../images/qihoo.png">
+		            <div class="mui-media-body">
+		                                 第二部分 医学人文综合
+		                <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+		            </div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media">
+		        <a href="javascript:;">
+		            <img class="mui-media-object mui-pull-left" src="../images/qq.png">
+		            <div class="mui-media-body">
+		                 第三部分 预防医学综合
+		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+		            </div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media">
+		        <a href="javascript:;">
+		            <img class="mui-media-object mui-pull-left" src="../images/qq.png">
+		            <div class="mui-media-body">
+		                 第四部分 临床医学综合
+		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+		            </div>
+		        </a>
+		    </li>
+		</ul>
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li id="aaaadsada" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a>
+							
+						</div>
+						<div class="mui-media-body">Home</div>
+					</a>
+				</li>
 			</ul>
-
 		</div>
-		<div class="mui-content-padded">
-			<button type="button" class="mui-btn mui-btn-primary mui-btn-block  mui-content-padded-111"> 继续阅读</button>
-
-			<a class="tiba" style="text-decoration:" href="http://tieba.baidu.com/f?kw=%E5%A4%A9%E6%B6%AF%E6%98%8E%E6%9C%88%E5%88%80ol">贴吧讨论</a>
-
-		</div>
-		<img class="srcimg" src="../images/aa15.png" />
 
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/loadXml.js"></script>
@@ -72,18 +93,16 @@
 				}]
 			})
 
-			document.getElementById("tishi").addEventListener('tap', function() {
+            document.getElementById("tishi").addEventListener('tap', function() {
 				var btnArray = ['否', '是'];
 				mui.confirm('是否继续上次阅读？', '提示', btnArray, function(e) {
-					if(e.index == 1) {
+					if (e.index == 1) {
 						tishi.innerText = '1';
 					} else {
 						tishi.innerText = '0'
 					}
 				})
 			});
-
-			//localStorage.setItem("Readingsign", "");
 
 			//设置本地存储标志
 			localStorage.setItem("isfirst", 1);
@@ -139,29 +158,6 @@
 			});
 
 			mui.plusReady(function() {
-
-				plus.webview.currentWebview().setStyle({
-					scrollIndicator: 'none'
-				});
-				document.addEventListener('touchstart', function(e) {
-					e.preventDefault();
-				});
-
-				var Readingsign = localStorage.getItem("Readingsign");
-				console.log("Readingsign="+Readingsign);
-				console.log(Readingsign);
-				if(Readingsign != null) {
-					console.log("进来了")
-					var btnArray = ['否', '是'];
-					mui.confirm('是否继续上次阅读？', '提示', btnArray, function(e) {
-						if(e.index == 1) {
-							tishi.innerText = '1';
-						} else {
-							tishi.innerText = '0'
-						}
-					})
-				}
-
 				var backButtonPress = 0;
 				mui.back = function(event) {
 					backButtonPress++;

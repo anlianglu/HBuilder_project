@@ -21,7 +21,8 @@
       "aaaaa.xml",
       "set/setting.html",
       "main/setting.html",
-      "shu.xml"
+      "shu.xml",
+      "images/aa15.png"
     ],
     "refer": [
       "main/second.html"
