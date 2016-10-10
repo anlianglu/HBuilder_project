@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-content-jixu {
+				position: absolute;
+				bottom: 80px;
+				font-size: 18px;
+				width: 95%;
+			}
+			
+			.tieba {
+				margin-left: 70%;
+			}
+			
+			.srcimage {
+				position: absolute;
+				bottom: 30px;
+				margin-left: 0px;
+				width: 100%;
+			}
+			
+			.fonts {
+				text-align: center;
+			}
+			
+			.mui-btn-primary {
+				color: #fff;
+				border: 1px solid #acacb4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="info" class="mui-icon  mui-icon-gear  mui-pull-right" href="setting.html"></a>
+		</header>
+
+		<div class="mui-content">
+
+			<div class="mui-content-padded">
+				<button id="item0" type="button" class="mui-btn mui-btn-primary mui-btn-block ">  第一部分 基础医学综合</button>
+				<button id="item1" type="button" class="mui-btn mui-btn-primary mui-btn-block ">第二部分 医学人文综合</button>
+				<button id="item2" type="button" class="mui-btn mui-btn-primary mui-btn-block ">第三部分 预防医学综合</button>
+				<button id="item3" type="button" class="mui-btn mui-btn-primary mui-btn-block "> 第四部分 临床医学综合</button>
+			</div>
+		</div>
+		<div class="mui-content-padded mui-content-jixu">
+			<button id="item5" type="button" class="mui-btn mui-btn-primary mui-btn-block  "> 继续阅读</button>
+
+			<a class="tieba" style="text-decoration:underline" href="http://tieba.baidu.com">贴吧讨论</a>
+
+		</div>
+		<div class="srcimage  fonts">
+			版权
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			var item = document.querySelector('.mui-content-padded');
+			var item5 = document.getElementById('item5');
+			var sign = 0;
+			var _sign1 = 0;
+			var _sign2 = 1;
+			mui.plusReady(function() {
+				console.log("plusReady------------------------->");
+				//监听按钮点击事件
+				mui(item).on('tap', '.mui-btn', function() {
+					var idtitle = this.getAttribute("id");
+					console.log(idtitle);
+
+					setTimeout(function() {
+
+						if(idtitle == "item0" || idtitle == "item1" || idtitle == "item2" || idtitle == "item3") {
+							console.log(idtitle+" is ok");
+							//打开篇章详情页面
+							if(sign == _sign1) {
+								console.log("_sign1 is ok");
+								mui.openWindow({
+									id: 'second.html',
+									url: 'second.html',
+									createNew: false,
+									extras: {
+										section: idtitle,
+										a:0,
+										b:1,
+										c:2,
+										d:3,
+										d:4,
+										e:5,
+										f:6,
+									}
+								});
+							}
+							if(sign == _sign2) {
+//								console.log("_sign2 is ok");
+//								mui.openWindow({
+//									id: 'second.html',
+//									url: 'second.html',
+//									createNew: false,
+//									extras: {
+//										name: idtitle
+//									}
+//								});
+							}
+
+						}
+
+					}, 50);
+					//			
+					//					if(idtitle == "item5") {
+					//						console.log("item5  is ok");
+					//					}
+					//					if(sign == _sign1){
+					//						console.log("_sign1  is ok");
+					//					}
+				});
+
+				item5.addEventListener('tap', function(event) {
+					console.log("item5  is ok");
+
+				});
+			})
+		</script>
+	</body>
+
+</html>

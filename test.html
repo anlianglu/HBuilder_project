@@ -444,12 +444,27 @@
 			var mui_slider_group = document.querySelector('.mui-slider-group');
 			//			mui-content
 			var mui_scontent = document.querySelector('.mui-content');
-			mui_scontent.addEventListener("swipe", function() {
-				console.log("你正在滑动屏幕");
+			mui_slider_group.addEventListener("swipeleft", function() {
+				console.log("你正在向左滑动屏幕");
 				var seleteid = document.querySelector('.mui-control-item.mui-active');
+				var id_index = seleteid.id.substring(5, seleteid.id.length);
 				console.log("seleteid=" + seleteid.id);
-				localStorage.setItem("Readingsign", seleteid.id);
-				console.log(localStorage.getItem("Readingsign"))
+				console.log("id_index=" + id_index);
+				var loadage = eval(id_index) + 1;
+				console.log("loadage=" + loadage);
+				localStorage.setItem("Readingsign", loadage);
+				console.log("Readingsign =" +localStorage.getItem("Readingsign"))
+			});
+			mui_slider_group.addEventListener("swiperight", function() {
+				console.log("你正在向向右滑动屏幕");
+				var seleteid = document.querySelector('.mui-control-item.mui-active');
+				var id_index = seleteid.id.substring(5, seleteid.id.length);
+				console.log("seleteid=" + seleteid.id);
+				console.log("id_index=" + id_index);
+				var loadage = eval(id_index) - 1;
+				console.log("loadage=" + loadage);
+				localStorage.setItem("Readingsign", loadage);
+				console.log("Readingsign =" +localStorage.getItem("Readingsign"))
 			});
 			mui.ready(function() {
 
@@ -549,6 +564,27 @@
 					localStorage.setItem("Readingsign", "");
 				});
 
+				mui(mui_scroll).on('tap', ".mui-control-item", function() {
+					console.log(" mui_scroll tap is ok!");
+					var idtitle = this.getAttribute("id");
+					console.log(idtitle);
+					var id_index = idtitle.substring(5, idtitle.length);
+					console.log("id_index=" + id_index);
+					var loadage = eval(id_index);
+					console.log("loadage=" + loadage);
+					localStorage.setItem("Readingsign", loadage);
+					console.log("Readingsign =" +localStorage.getItem("Readingsign"))
+				})
+
+			});
+
+			mui.plusReady(function() {
+				console.log("---------------plusReady-------------------");
+				var self = plus.webview.currentWebview();
+				var section = self.section;
+				var part = self.part;
+				console.log(section);
+				console.log(part);
 			});
 		</script>
 	</body>
