@@ -68,19 +68,19 @@
 			var _sign1 = 0;
 			var _sign2 = 1;
 			mui.plusReady(function() {
-				console.log("plusReady------------------------->");
+				//console.log("plusReady------------------------->");
 				//监听按钮点击事件
 				mui(item).on('tap', '.mui-btn', function() {
 					var idtitle = this.getAttribute("id");
-					console.log(idtitle);
+					//console.log(idtitle);
 
 					setTimeout(function() {
 
 						if(idtitle == "item0" || idtitle == "item1" || idtitle == "item2" || idtitle == "item3") {
-							console.log(idtitle+" is ok");
+							//console.log(idtitle+" is ok");
 							//打开篇章详情页面
 							if(sign == _sign1) {
-								console.log("_sign1 is ok");
+								//console.log("_sign1 is ok");
 								mui.openWindow({
 									id: 'second.html',
 									url: 'second.html',
@@ -98,7 +98,7 @@
 								});
 							}
 							if(sign == _sign2) {
-//								console.log("_sign2 is ok");
+//								//console.log("_sign2 is ok");
 //								mui.openWindow({
 //									id: 'second.html',
 //									url: 'second.html',
@@ -114,17 +114,32 @@
 					}, 50);
 					//			
 					//					if(idtitle == "item5") {
-					//						console.log("item5  is ok");
+					//						//console.log("item5  is ok");
 					//					}
 					//					if(sign == _sign1){
-					//						console.log("_sign1  is ok");
+					//						//console.log("_sign1  is ok");
 					//					}
 				});
 
 				item5.addEventListener('tap', function(event) {
-					console.log("item5  is ok");
+					//console.log("item5  is ok");
 
 				});
+				
+				
+				var backButtonPress = 0;
+				mui.back = function(event) {
+					backButtonPress++;
+					if(backButtonPress > 1) {
+						plus.runtime.quit();
+					} else {
+						plus.nativeUI.toast('再按一次退出应用');
+					}
+					setTimeout(function() {
+						backButtonPress = 0;
+					}, 1000);
+					return false;
+				};
 			})
 		</script>
 	</body>

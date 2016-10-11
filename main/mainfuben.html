@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.body-font{
+				font-size: 35p;
+				color: #007AFF;
+			}
+			.mui-ellipsis{
+				font-size: 12px;
+				color: #ACACB4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+
+			<a id="info" class="mui-icon  mui-icon-gear  mui-pull-right" href="setting.html"></a>
+			<a id="tishi" class="mui-icon mui-icon-info-filled mui-pull-left" style="color: #F14E41;"></a>
+			
+		</header>
+		<div class="mui-content">
+			
+			<div class="mui-content-padded">
+				 <button type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined">  第一部分 基础医学综合</button>
+				  <button type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined">第二部分 医学人文综合</button>
+				   <button type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined">第三部分 预防医学综合</button>
+				    <button type="button" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined"> 第四部分 临床医学综合</button>
+			</div>
+			
+		<ul class="mui-table-view body-font">
+		    <li class="mui-table-view-cell mui-media">
+		        <a href="javascript:;">
+		            <img class="mui-media-object mui-pull-left" src="../images/qihoo.png">
+		            <div class="mui-media-body ">
+		                                第一部分 基础医学综合
+		                <p class="mui-ellipsis ">  主要包括生物化学、生理学医学微生物学医学免疫学、病理学</p>
+		            </div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media">
+		        <a href="javascript:;">
+		            <img class="mui-media-object mui-pull-left" src="../images/qihoo.png">
+		            <div class="mui-media-body">
+		                                 第二部分 医学人文综合
+		                <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+		            </div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media">
+		        <a href="javascript:;">
+		            <img class="mui-media-object mui-pull-left" src="../images/qq.png">
+		            <div class="mui-media-body">
+		                 第三部分 预防医学综合
+		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+		            </div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media">
+		        <a href="javascript:;">
+		            <img class="mui-media-object mui-pull-left" src="../images/qq.png">
+		            <div class="mui-media-body">
+		                 第四部分 临床医学综合
+		                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+		            </div>
+		        </a>
+		    </li>
+		</ul>
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li id="aaaadsada" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a>
+							
+						</div>
+						<div class="mui-media-body">Home</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/loadXml.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				preloadPages: [{
+					id: 'second.html',
+					url: 'second.html'
+				}]
+			})
+
+            document.getElementById("tishi").addEventListener('tap', function() {
+				var btnArray = ['否', '是'];
+				mui.confirm('是否继续上次阅读？', '提示', btnArray, function(e) {
+					if (e.index == 1) {
+						tishi.innerText = '1';
+					} else {
+						tishi.innerText = '0'
+					}
+				})
+			});
+
+			//设置本地存储标志
+			localStorage.setItem("isfirst", 1);
+
+			var xmlDoc = checkXMLDocObj('../shu.xml');
+			var nodes = xmlDoc.getElementsByTagName('section');
+			var ul = document.querySelector('.mui-table-view');
+			mui.ready(function() {
+				console.log("=================ready=================");
+				console.log(xmlDoc);
+				console.log(nodes);
+				console.log("nodes.length=" + nodes.length);
+
+				var partTitle = nodes[0].getElementsByTagName("part");
+
+				console.log("partTitle.length = " + partTitle.length);
+				console.log(partTitle);
+
+				var unitTitle = nodes[0].getElementsByTagName("part")[0];
+				console.log(unitTitle);
+
+				var unitTitlestr = nodes[0].getElementsByTagName("part")[0].getElementsByTagName("unit");
+
+				console.log("unitTitlestr.length=" + unitTitlestr.length);
+				console.log(unitTitlestr);
+
+				for(var i = 0; i < unitTitlestr.length; i++) {
+
+					var nuit = unitTitlestr[i].getAttribute("title")
+					console.log("nuit = " + nuit);
+					var point = unitTitlestr[i].getElementsByTagName("point");
+					console.log(point);
+					console.log(point[0].textContent);
+				}
+
+				for(var i = 0; i < nodes.length; i++) {
+					var Part = xmlDoc.getElementsByTagName("section")[i].getAttribute("title");
+					var li = document.createElement('li');
+					li.className = 'mui-table-view-cell';
+					var a = document.createElement('a');
+					a.className = 'mui-navigate-right';
+					a.innerHTML = Part;
+
+					var index = "" + (i);
+					//console.log("index = "+index);	
+					li.id = "index" + index;
+					li.appendChild(a);
+					ul.appendChild(li);
+					//console.log(ul.innerHTML);	
+				}
+				console.log(ul.innerHTML);
+
+			});
+
+			mui.plusReady(function() {
+				var backButtonPress = 0;
+				mui.back = function(event) {
+					backButtonPress++;
+					if(backButtonPress > 1) {
+						plus.runtime.quit();
+					} else {
+						plus.nativeUI.toast('再按一次退出应用');
+					}
+					setTimeout(function() {
+						backButtonPress = 0;
+					}, 1000);
+					return false;
+				};
+				var detail = null;
+				mui(ul).on('tap', '.mui-table-view-cell', function() {
+					console.log(" ready  list touch is ok!");
+					var idtitle = this.getAttribute("id");
+					console.log(idtitle);
+					if(!detail) {
+						detail = plus.webview.getWebviewById('second.html');
+					}
+					//传值给详情页面，通知加载新数据
+					mui.fire(detail, 'titleId', {
+						id: idtitle
+					});
+					//打开新闻详情
+					mui.openWindow({
+						id: 'second.html',
+						url: 'second.html',
+						createNew: false
+					});
+
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

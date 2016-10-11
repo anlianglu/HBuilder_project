@@ -42,23 +42,23 @@
 			//获取标题对象
 			var mui_title = document.querySelector('.mui-title');
 			var readxml = function(id) {
-				//console.log("----------------------------");
-				//console.log("id-index=" + id);
+				////console.log("----------------------------");
+				////console.log("id-index=" + id);
 				var id_index = id.substring(4, id.length);
-				//console.log("detail id=" + id.substring(3, id.length));
-				console.log("id_index=" + id_index);
-				console.log("nodes.length = " + nodes.length);
+				////console.log("detail id=" + id.substring(3, id.length));
+				//console.log("id_index=" + id_index);
+				//console.log("nodes.length = " + nodes.length);
 				//给标题赋值
-				mui_title.innerHTML = nodes[0].getAttribute('title');
+				mui_title.innerHTML = nodes[id_index].getAttribute('title');
 				var partTitle = nodes[id_index].getElementsByTagName("part");
 
-				console.log("partTitle.length = " + partTitle.length);
-				console.log(partTitle);
+				//console.log("partTitle.length = " + partTitle.length);
+				//console.log(partTitle);
 				if(partTitle.length != 0) {
-					//console.log("partTitle  =" + partTitle.length);
+					////console.log("partTitle  =" + partTitle.length);
 					for(var j = 0; j < partTitle.length; j++) {
 						var partTitlestring = partTitle[j].getAttribute('title');
-						console.log("partTitle name  =" + partTitlestring);
+						//console.log("partTitle name  =" + partTitlestring);
 
 						var li = document.createElement('li');
 						li.className = 'mui-table-view-cell';
@@ -67,13 +67,13 @@
 						a.innerHTML = partTitlestring;
 
 						var index = "" + (j);
-						//console.log("index = "+index);	
+						////console.log("index = "+index);	
 						li.id = "index" + index;
 						li.appendChild(a);
 						ul.appendChild(li);
 					}
-					//console.log("++++++++++++++++++++++++++++++++++++++");
-					//console.log(ul.innerHTML);
+					////console.log("++++++++++++++++++++++++++++++++++++++");
+					////console.log(ul.innerHTML);
 				}
 			}
 
@@ -81,7 +81,7 @@
 			var removefun = function(n) {
 				ul.removeChild(ul.childNodes[1]);
 				var n1 = ul.childNodes.length;
-				console.log("n1 =" + n1);
+				//console.log("n1 =" + n1);
 				if(n1 != 1 && n1 > 0) {
 					removefun(n1);
 				} else {
@@ -92,11 +92,11 @@
 			//删除ul下的所以子节点
 			var removeUlChild = function(id) {
 				document.getElementById("message").innerHTML = "";
-				//console.log("xxxxx---------------------xxxxxxxxx");
-				console.log("ul.length  removeUlChild = " + ul.childNodes.length);
+				////console.log("xxxxx---------------------xxxxxxxxx");
+				//console.log("ul.length  removeUlChild = " + ul.childNodes.length);
 				var n = ul.childNodes.length;
 				if(n != 1 && n > 0) {
-					console.log("n等于非1");
+					//console.log("n等于非1");
 					removefun(n);
 				}
 				readxml(id);
@@ -106,21 +106,21 @@
 			window.addEventListener('titleId', function(event) {
 				//获得事件参数
 				id = event.detail.id;
-				console.log(" ----------------------------------");
-				console.log(" id = " + id);
+				//console.log(" ----------------------------------");
+				//console.log(" id = " + id);
 
 				//根据id请求目录详情
-				//	console.log("detail id=" + id.substring(3, id.length));
+				//	//console.log("detail id=" + id.substring(3, id.length));
 				//removeUlChild(id);
 			});
 
 			mui.ready(function() {
-				console.log("-----second---ready------");
+				//console.log("-----second---ready------");
 
 			});
 
 			mui.plusReady(function() {
-				console.log("-----second---plusReady------");
+				//console.log("-----second---plusReady------");
 				var self = plus.webview.currentWebview();
 				var section = self.section;
 				var a = self.a;
@@ -130,24 +130,24 @@
 				var e = self.e;
 				
 				//var a = self.idtitle;
-				console.log(section);
-				console.log(a);
-				console.log(b);
-				console.log(c);
-				console.log(d);
-				console.log(e);
+				//console.log(section);
+				//console.log(a);
+				//console.log(b);
+				//console.log(c);
+				//console.log(d);
+				//console.log(e);
 				removeUlChild(section);
                 var id_index = section.substring(4, section.length);
-				//console.log(idtitle);
-				//console.log(JSON.stringify(idtitle));
-				//console.log(JSON.stringify(nodes[0]));
+				////console.log(idtitle);
+				////console.log(JSON.stringify(idtitle));
+				////console.log(JSON.stringify(nodes[0]));
 
 				var detail = null;
 				mui(ul).on('tap', '.mui-table-view-cell', function() {
-					console.log(" ready  list touch is ok!");
-					var idtitle = this.getAttribute("id");
-					console.log(idtitle);
-
+					//console.log(" ready  list touch is ok!");
+					var idtitlestr = this.getAttribute("id");
+					//console.log(idtitle);
+                    var idtitle = idtitlestr.substring(5, idtitlestr.length);
 					//打开新闻详情
 					mui.openWindow({
 						id: '../test.html',

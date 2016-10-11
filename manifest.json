@@ -4,8 +4,8 @@
 		"iPhone",
 		"iPad"
 	],
-	"id": "mui_template_login",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "mui登录模板",/*应用名称，程序桌面图标名称*/
+	"id": "H57BA5501",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "医药知识点",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.0.0",/*应用版本名称*/
 		"code": "83"
@@ -82,7 +82,9 @@
 		"Webview": {},
 		"NativeUI": {},
 		"Navigator": {},
-		"NativeObj": {},"OAuth":{},"Device":{}
+		"NativeObj": {},
+		
+		"Device": {}
 	},
 	"plus": {
 		"splashscreen": {
@@ -105,7 +107,16 @@
 				"keystore": "",/*Android应用打包使用的密钥库文件*/
 				"password": "",/*Android应用打包使用密钥库中证书的密码*/
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
-				"permissions": ["<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>"]
+				"permissions": [
+					"<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
+					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>"
+				]
 			},
 			"orientation": [
 				"portrait-primary",
@@ -151,27 +162,27 @@
 			"splashscreen": {
 				"ios": {
 					"iphone": {
-						"default": "", /*iPhone3启动图片选，分辨率：320x480*/
-						"retina35": "",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
-						"retina40": ""
+						"default": "C:/Users/luan/Desktop/index.png", /*iPhone3启动图片选，分辨率：320x480*/
+						"retina35": "C:/Users/luan/Desktop/index.png",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+						"retina40": "C:/Users/luan/Desktop/index.png","retina55":"C:/Users/luan/Desktop/index.png","retina47":"C:/Users/luan/Desktop/index.png","retina55l":"C:/Users/luan/Desktop/index.png"
 					},
 					"ipad": {
-						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
-						"portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
-						"landscape": "", /*iPad横屏启动图片，分辨率：1024x748*/
-						"landscape-retina": "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
-						"portrait7": "", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
-						"portrait-retina7": "",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
-						"landscape7": "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
-						"landscape-retina7": ""
+						"portrait": "C:/Users/luan/Desktop/index.png", /*iPad竖屏启动图片，分辨率：768x1004*/
+						"portrait-retina": "C:/Users/luan/Desktop/index.png",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+						"landscape": "C:/Users/luan/Desktop/index.png", /*iPad横屏启动图片，分辨率：1024x748*/
+						"landscape-retina": "C:/Users/luan/Desktop/index.png", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+						"portrait7": "C:/Users/luan/Desktop/index.png", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+						"portrait-retina7": "C:/Users/luan/Desktop/index.png",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+						"landscape7": "C:/Users/luan/Desktop/index.png", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+						"landscape-retina7": "C:/Users/luan/Desktop/index.png"
 					}
 				},
 				"android": {
-					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
-					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": ""
+					"mdpi": "C:/Users/luan/Desktop/index.png", /*普通屏启动图片，分辨率：240x282*/
+					"ldpi": "C:/Users/luan/Desktop/index.png", /*大屏启动图片，分辨率：320x442*/
+					"hdpi": "C:/Users/luan/Desktop/index.png", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "C:/Users/luan/Desktop/index.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "C:/Users/luan/Desktop/index.png"
 				}
 			}
 		}
@@ -417,7 +428,9 @@
 			]
 		}
 	},
-	"unpackage":[
-	  "README.md"
-	]
+	"unpackage": [
+	  "README.md",
+	  "images/user-photo.png"
+	],
+	"fullscreen": true
 }
