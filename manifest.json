@@ -359,18 +359,26 @@
 					"images/qq.png",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					null
+					null,
+					"js/login.js",
+					"js/cofig.js",
+					"js/md5.js"
 				],
 				"refer": [
 					"main/reg.html",
-					"main/main.html"
+					"main/main.html",
+					"main/main1.html"
 				],
 				"priority": 0
 			},
 			"main/setting.html": {
 				"resources": [
 					"main/about.html",
-					"main/main.html"
+					"main/main.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"main/main1.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -392,7 +400,8 @@
 				],
 				"refer": [
 					"main/third.html",
-					"test.html"
+					"test.html",
+					"main/test.html"
 				],
 				"priority": 0
 			},
@@ -414,6 +423,30 @@
 					"js/loadXml.js",
 					"shu.xml",
 					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"main/main1.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"main/setting.html"
+				],
+				"refer": [
+					"main/second.html",
+					"main/third.html"
+				],
+				"priority": 0
+			},
+			"main/test.html": {
+				"resources": [
+					"js/mui.min.js",
+					"js/loadXml.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"shu.xml"
 				],
 				"refer": [],
 				"priority": 0

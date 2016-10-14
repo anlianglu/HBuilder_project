@@ -51,7 +51,7 @@
 			</div>
 		</div>
 		<div class="mui-content-padded mui-content-jixu">
-			<button id="item5" type="button" class="mui-btn mui-btn-primary mui-btn-block  "> 继续阅读</button>
+			<button id="item5" type="button" class="mui-btn mui-btn-primary mui-btn-block  "> 继续上次阅读</button>
 
 			<a class="tieba" style="text-decoration:underline" href="http://tieba.baidu.com">贴吧讨论</a>
 
@@ -73,13 +73,20 @@
 				mui(item).on('tap', '.mui-btn', function() {
 					var idtitle = this.getAttribute("id");
 					//console.log(idtitle);
+					var idtitlesign = idtitle.substring(4, idtitle.length);
+
+					console.log("idtitlesign=" + idtitlesign);
 
 					setTimeout(function() {
 
 						if(idtitle == "item0" || idtitle == "item1" || idtitle == "item2" || idtitle == "item3") {
 							//console.log(idtitle+" is ok");
 							//打开篇章详情页面
+							
+							
 							if(sign == _sign1) {
+								localStorage.setItem("goon", 0);
+								localStorage.setItem("newread", 1);
 								//console.log("_sign1 is ok");
 								mui.openWindow({
 									id: 'second.html',
@@ -87,46 +94,48 @@
 									createNew: false,
 									extras: {
 										section: idtitle,
-										a:0,
-										b:1,
-										c:2,
-										d:3,
-										d:4,
-										e:5,
-										f:6,
 									}
 								});
-							}
-							if(sign == _sign2) {
-//								//console.log("_sign2 is ok");
-//								mui.openWindow({
-//									id: 'second.html',
-//									url: 'second.html',
-//									createNew: false,
-//									extras: {
-//										name: idtitle
-//									}
-//								});
 							}
 
 						}
 
 					}, 50);
-					//			
-					//					if(idtitle == "item5") {
-					//						//console.log("item5  is ok");
-					//					}
-					//					if(sign == _sign1){
-					//						//console.log("_sign1  is ok");
-					//					}
 				});
 
 				item5.addEventListener('tap', function(event) {
-					//console.log("item5  is ok");
+
+					console.log("item5  is ok");
+					console.log(localStorage.getItem("Unitssign"));
+					console.log(localStorage.getItem("section"));
+					console.log(localStorage.getItem("part"));
+					//获取是否有单元内容 1表示有单元阅读内容
+					var Unitssign = localStorage.getItem("Unitssign");
+					//取到部分的下标
+					var section = localStorage.getItem("section");
+					//取到篇的下标
+					var part = localStorage.getItem("part");
+
+					if(Unitssign == 1 && section != null && part != null) {
+						//设置用户继续上次阅读标志
+						localStorage.setItem("goon", 1);
+						localStorage.setItem("newread", 0);
+						//直接跳转到单元
+						mui.openWindow({
+							id: 'third.html',
+							url: 'third.html',
+							createNew: false,
+							extras: {
+								section: localStorage.getItem("section"),
+								part: localStorage.getItem("part"),
+							}
+						});
+					} else {
+						plus.nativeUI.toast("没有阅读记录");
+					}
 
 				});
-				
-				
+
 				var backButtonPress = 0;
 				mui.back = function(event) {
 					backButtonPress++;

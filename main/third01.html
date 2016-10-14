@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #2AC845;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav ">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left  "></a>
+			<h1 class="mui-title">标题</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"  >
+					<div class="mui-scroll">
+						<a id="Cilickistrue" class="mui-control-item mui-active" href="#item1mobile">
+							介绍
+						</a>
+					</div>
+				</div>
+
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								
+							</div>
+						</div>
+					</div>
+
+
+					
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/loadXml.js"></script>
+		<script type="text/javascript">
+			var deceleration = mui.os.ios ? 0.003 : 0.0009;
+			mui('.mui-scroll-wrapper').scroll({
+				scrollY:true,
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration: deceleration
+			});
+
+			var xmlDoc = checkXMLDocObj('../shu.xml');
+			var nodes = xmlDoc.getElementsByTagName('section');
+			var mui_scroll = document.querySelector('.mui-scroll');
+			var mui_slider_group = document.querySelector('.mui-slider-group');
+			mui.ready(function() {
+				console.log("=================ready=================");
+				console.log(xmlDoc);
+				console.log(nodes);
+				console.log("nodes.length=" + nodes.length);
+				
+				var gallery = mui('.mui-slider');
+gallery.slider().gotoItem(0);
+
+				var partTitle = nodes[0].getElementsByTagName("part");
+
+				console.log("partTitle.length = " + partTitle.length);
+				console.log(partTitle);
+
+				var unitTitlestr = nodes[0].getElementsByTagName("part")[0].getElementsByTagName("unit");
+				console.log("unitTitlestr.length=" + unitTitlestr.length);
+
+				var loadingread = 0;
+
+				for(var i = 0; i < unitTitlestr.length; i++) {
+					var idstr = "#item" + i;
+
+					var point = unitTitlestr[i].getElementsByTagName("point");
+					//console.log(point);
+					//console.log(point[0].innerHTML);
+
+					var span = document.createElement("span");
+					span.innerHTML = ""+point[0].textContent;
+					//span.innerHTML = idstr;
+			
+					var divscroll = document.createElement("div");
+					divscroll.className = 'mui-scroll';
+					divscroll.style="-webkit-transform: translate3d(0px, 0px, 0px) translateZ(0px);"
+					divscroll.appendChild(span);
+					
+					var divscroll2 = document.createElement("div");
+					divscroll2.className = 'mui-scrollbar mui-scrollbar-vertical';
+					
+					var divscroll2001 = document.createElement("div");
+					divscroll2001.className = 'mui-scrollbar-indicator';
+					divscroll2001.styleName = "-webkit-transition: 0ms; transition: 0ms; display: block; height: 59px; -webkit-transform: translate3d(0px, 0px, 0px) translateZ(0px);"
+					divscroll2.appendChild(divscroll2001);
+					
+
+					var divscrollwrapper = document.createElement("div");
+					divscrollwrapper.className = 'mui-scroll-wrapper';
+					divscrollwrapper.appendChild(divscroll);
+					divscrollwrapper.appendChild(divscroll2);
+
+					var divitem = document.createElement("div");
+					var dividstr = "item" + i;
+					divitem.id = dividstr
+						//if(i == loadingread) {
+						//divitem.className = 'mui-slider-item mui-control-content mui-active'
+						//	} else {
+					divitem.className = 'mui-slider-item mui-control-content'
+						//}
+
+					divitem.appendChild(divscrollwrapper)
+
+					mui_slider_group.appendChild(divitem);
+
+					//-------------------------------------------------------
+					var nuit = unitTitlestr[i].getAttribute("title")
+					var a = document.createElement('a');
+					//					if(i == loadingread) {
+					//						console.log("i=" + i);
+					//						a.className = 'mui-control-item mui-active';
+					//					} else {
+					//						console.log("i=" + i);
+					a.className = 'mui-control-item';
+					//					}
+
+					a.href = idstr
+					a.innerHTML = nuit;
+					mui_scroll.appendChild(a);
+
+				}
+				console.log(mui_scroll.innerHTML);
+				console.log("---------------------------------------");
+				console.log(mui_slider_group.innerHTML);
+
+				var mui_content = document.querySelector('.mui-content');
+				console.log("++++++++++++++++++++++++++++++++++++++++++++-");
+				console.log(mui_content.innerHTML);
+
+				
+
+				//	emulateMouseClick()d
+
+				function emulateMouseClick($e) {
+
+					//派发点击事件
+					if(document.createEvent) { // DOM Level 2 standard 
+						var evt = document.createEvent("MouseEvents");
+						evt.initMouseEvent("click", true, true, window,
+							0, 0, 0, 0, 0, false, false, false, false, 0, null);
+						$e.dispatchEvent(evt);
+						console.log("onclick  no")
+					} else if(el.fireEvent) { // IE 
+						$e.fireEvent('onclick');
+						console.log("onclick ")
+					}
+
+				}
+
+			});
+
+			mui.plusReady(function() {
+				//				mui('.mui-slider-item').on('scroll', )
+				//				mui('.mui-slider-group').on('scroll', )
+
+				mui('mui-slider-group').on('tap', '.mui-slider-item', function() {
+					console.log(" ready  list touch is ok!");
+					var idtitle = this.getAttribute("id");
+					console.log(idtitle);
+
+				});
+
+			});
+
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				}
+			})
+			
+			//sliderSegmentedControl
+				var Cilck = document.getElementById("sliderSegmentedControl");
+
+				Cilck.addEventListener("tap", function(e) {
+					//e.sender.isActived = true;
+					console.log("sliderSegmentedControl swipe event trigger");
+				}); 
+				
+				//触发submit按钮的点击事件
+				mui.trigger(Cilck, 'tap');
+		function	funcilcik(){
+			console.log("funcilcik is ok")
+		}
+			
+		</script>
+	</body>s
+
+</html>

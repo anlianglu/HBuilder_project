@@ -123,21 +123,11 @@
 				//console.log("-----second---plusReady------");
 				var self = plus.webview.currentWebview();
 				var section = self.section;
-				var a = self.a;
-				var b = self.b;
-				var c = self.c;
-				var d = self.d;
-				var e = self.e;
-				
-				//var a = self.idtitle;
+
 				//console.log(section);
-				//console.log(a);
-				//console.log(b);
-				//console.log(c);
-				//console.log(d);
-				//console.log(e);
+
 				removeUlChild(section);
-                var id_index = section.substring(4, section.length);
+				var id_index = section.substring(4, section.length);
 				////console.log(idtitle);
 				////console.log(JSON.stringify(idtitle));
 				////console.log(JSON.stringify(nodes[0]));
@@ -147,15 +137,15 @@
 					//console.log(" ready  list touch is ok!");
 					var idtitlestr = this.getAttribute("id");
 					//console.log(idtitle);
-                    var idtitle = idtitlestr.substring(5, idtitlestr.length);
+					var idtitle = idtitlestr.substring(5, idtitlestr.length);
 					//打开新闻详情
 					mui.openWindow({
-						id: '../test.html',
-						url: '../test.html',
+						id: 'third.html',
+						url: 'third.html',
 						createNew: false,
 						extras: {
-							section:id_index,
-							part:idtitle,
+							section: id_index,
+							part: idtitle,
 						}
 					});
 
