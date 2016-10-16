@@ -9,3 +9,4 @@ console.log("tokenstr="+tokenstr);
 var token = md5(tokenstr);
 
 console.log("token="+token);
+

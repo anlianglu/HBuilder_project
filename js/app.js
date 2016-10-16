@@ -45,6 +45,8 @@
 		regInfo = regInfo || {};
 		regInfo.account = regInfo.account || '';
 		regInfo.password = regInfo.password || '';
+		regInfo.pollcode = regInfo.pollcode || '';
+		
 		if (regInfo.account.length < 5) {
 			return callback('用户名最短需要 5 个字符');
 		}
@@ -54,9 +56,20 @@
 		if (!checkEmail(regInfo.email)) {
 			return callback('邮箱地址不合法');
 		}
-		var users = JSON.parse(localStorage.getItem('$users') || '[]');
-		users.push(regInfo);
-		localStorage.setItem('$users', JSON.stringify(users));
+		
+		var tokenstr = regInfo.account + GC.key;
+
+		//var hash = hex_md5("123dafd");
+		var token = md5(tokenstr);
+
+		
+		//me thod=regist&mobile=15600901539&password=111111&email=2622638480@qq.com&registcode=BY3SBA367644&token=f36b2e07f1d7c7910bb7f7bd665fa260
+		 var RequestData = "method=regist&mobile="+regInfo.account+"&password="+regInfo.password+"&email="+regInfo.email+"&registcode="+regInfo.pollcode+"&token="+token;
+		
+		RegRequestHttpClient(RequestData,function(data){
+			console.log("data="+data);
+		})
+		
 		return callback();
 	};
 

@@ -73,6 +73,11 @@
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/app.js"></script>
+		<script src="../js/cofig.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/HttpCilents.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
+		
+		
 		<script>
 			(function($, doc) {
 				$.init();
@@ -83,31 +88,38 @@
 					var passwordBox = doc.getElementById('password');
 					var passwordConfirmBox = doc.getElementById('password_confirm');
 					var emailBox = doc.getElementById('email');
+					var pollcodebox = doc.getElementById('pollcode');
 					regButton.addEventListener('tap', function(event) {
 						var regInfo = {
 							account: accountBox.value,
 							password: passwordBox.value,
-							email: emailBox.value
+							email: emailBox.value,
+							pollcode: pollcodebox.value
 						};
+						
+						
 						var passwordConfirm = passwordConfirmBox.value;
 						if (passwordConfirm != regInfo.password) {
 							plus.nativeUI.toast('密码两次输入不一致');
 							return;
 						}
 						app.reg(regInfo, function(err) {
+							console.log("err="+err);
 							if (err) {
 								plus.nativeUI.toast(err);
 								return;
 							}
 							plus.nativeUI.toast('注册成功');
-							$.openWindow({
-								url: 'login.html',
-								id: 'login',
-								show: {
-									aniShow: 'pop-in'
-								}
-							});
+//							$.openWindow({
+//								url: 'login.html',
+//								id: 'login',
+//								show: {
+//									aniShow: 'pop-in'
+//								}
+//							});
 						});
+						
+						
 					});
 				});
 			}(mui, document));
