@@ -97,7 +97,7 @@
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
 					<label>账号</label>
-					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入手机号码">
 				</div>
 				<div class="mui-input-row">
 					<label>密码</label>
@@ -127,22 +127,21 @@
 		</div>
 
 		<script src="../js/mui.min.js"></script>
-		<script src="../js/mui.enterfocus.js"></script>
 		<script src="../js/app.js"></script>
 		<script src="../js/cofig.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/login.js" type="text/javascript" charset="utf-8"></script>
-		
+		<script src="../js/HttpCilents.js" type="text/javascript" charset="utf-8"></script>
+
 		<script>
 			(function($, doc) {
 				$.init({
 					statusBarBackground: '#f7f7f7'
 				});
 				$.plusReady(function() {
-					
-					
-					
-					
+
+					console.log("fffffff")
+
 					//检查 "登录状态/锁屏状态" 结束
 					var loginButton = doc.getElementById('login');
 					var accountBox = doc.getElementById('account');
@@ -151,33 +150,45 @@
 					var regButton = doc.getElementById('reg');
 					var forgetButton = doc.getElementById('forgetPassword');
 					loginButton.addEventListener('tap', function(event) {
-						
-						
-						
-						mui.openWindow({
-							url: '../main/main1.html',
-							id: 'main',
-							show: {
-								aniShow: 'pop-in'
-							},
-							waiting: {
-								autoShow: false
+
+						var loginInfo = {
+							account: accountBox.value,
+							password: passwordBox.value
+						};
+						app.login(loginInfo, function(err) {
+							if(err) {
+								console.log("err=" + err)
+								plus.nativeUI.toast(err);
+								return;
 							}
+
+							plus.nativeUI.toast("登录成功");
+
+							//							mui.openWindow({
+							//							url: '../main/main1.html',
+							//							id: 'main',
+							//							show: {
+							//								aniShow: 'pop-in'
+							//							},
+							//							waiting: {
+							//								autoShow: false
+							//							}
 						});
 
 					});
-				//	autoLoginButton.classList[settings.autoLogin ? 'add' : 'remove']('mui-active')
+
+					//	autoLoginButton.classList[settings.autoLogin ? 'add' : 'remove']('mui-active')
 					autoLoginButton.addEventListener('toggle', function(event) {
 						console.log("------------------------------")
 						setTimeout(function() {
 							var isActive = event.detail.isActive;
-							
-							
-							console.log("isActive="+isActive);
-							
+
+							console.log("isActive=" + isActive);
+
 						}, 50);
 					}, false);
 					regButton.addEventListener('tap', function(event) {
+						console.log("------------------------------")
 						$.openWindow({
 							url: 'reg.html',
 							id: 'reg',
@@ -194,6 +205,7 @@
 						});
 					}, false);
 					forgetButton.addEventListener('tap', function(event) {
+						console.log("------------------------------")
 						$.openWindow({
 							url: 'forget_password.html',
 							id: 'forget_password',

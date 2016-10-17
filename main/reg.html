@@ -11,28 +11,33 @@
 			.area {
 				margin: 20px auto 0px auto;
 			}
+			
 			.mui-input-group:first-child {
 				margin-top: 20px;
 			}
+			
 			.mui-input-group label {
 				width: 22%;
 			}
+			
 			.mui-input-row label~input,
 			.mui-input-row label~select,
 			.mui-input-row label~textarea {
 				width: 78%;
 			}
+			
 			.mui-checkbox input[type=checkbox],
 			.mui-radio input[type=radio] {
 				top: 6px;
 			}
+			
 			.mui-content-padded {
 				margin-top: 25px;
 			}
+			
 			.mui-btn {
 				padding: 10px;
 			}
-			
 		</style>
 	</head>
 
@@ -45,7 +50,7 @@
 			<form class="mui-input-group">
 				<div class="mui-input-row">
 					<label>账号</label>
-					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入手机号码">
 				</div>
 				<div class="mui-input-row">
 					<label>密码</label>
@@ -68,7 +73,7 @@
 				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
 			</div>
 			<div class="mui-content-padded">
-				
+
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
@@ -76,12 +81,23 @@
 		<script src="../js/cofig.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/HttpCilents.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
-		
-		
+		<script src="../js/loadXml.js" type="text/javascript" charset="utf-8"></script>
+
 		<script>
 			(function($, doc) {
 				$.init();
+
+				//读取xml 资源
+				var xmlDoc = checkXMLDocObj('../shu.xml');
+				//获取xml 资源 第一节点（section）
+				var nodes = xmlDoc.getElementsByTagName('section');
+                 var shuid = nodes[0].getAttribute("parentid");
+                 console.log(shuid);
 				$.plusReady(function() {
+					
+					var shuid = nodes[0].getAttribute("parentid");
+                     console.log(shuid);
+
 					var settings = app.getSettings();
 					var regButton = doc.getElementById('reg');
 					var accountBox = doc.getElementById('account');
@@ -96,30 +112,28 @@
 							email: emailBox.value,
 							pollcode: pollcodebox.value
 						};
-						
-						
+
 						var passwordConfirm = passwordConfirmBox.value;
-						if (passwordConfirm != regInfo.password) {
+						if(passwordConfirm != regInfo.password) {
 							plus.nativeUI.toast('密码两次输入不一致');
 							return;
 						}
 						app.reg(regInfo, function(err) {
-							console.log("err="+err);
-							if (err) {
+							if(err) {
+								console.log("err=" + err);
 								plus.nativeUI.toast(err);
 								return;
 							}
 							plus.nativeUI.toast('注册成功');
-//							$.openWindow({
-//								url: 'login.html',
-//								id: 'login',
-//								show: {
-//									aniShow: 'pop-in'
-//								}
-//							});
+							//							$.openWindow({
+							//								url: 'login.html',
+							//								id: 'login',
+							//								show: {
+							//									aniShow: 'pop-in'
+							//								}
+							//							});
 						});
-						
-						
+
 					});
 				});
 			}(mui, document));
